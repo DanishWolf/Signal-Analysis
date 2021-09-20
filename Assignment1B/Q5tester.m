@@ -2,7 +2,7 @@
 % Generate Time Vector 
 t3 = linspace(-2, 2, 999 + 1); t3(end) = [];
 % Generate signal vector s3(t) in time domain
-s3t = (rectangularPulse(t3./6) + 6.*exp(-9.*t3).*heaviside(t3).*cos(2.*pi.*33.*t3))...
+s3t = (rectangularPulse(t3./6) + 6.*exp(-9*t3).*heaviside(t3).*cos(2*pi*33*t3))...
     .* cos(2 .* pi .* 33 .* t3);
 % Determine the sampling period
 Ts = t3(2) - t3(1);
@@ -13,18 +13,15 @@ k3 = linspace(-fs/2, fs/2, 999 + 1); k3(end) = [];
 % Perform Discrete Fourier Transform of s3t
 S3k= fft(s3t);
 
-magnitude = abs(S3k);
-phase = angle(S3k);
-
 % store the magnitude plot as 'mag_S3k'
 figure(1)
-mag_S3k= plot(t3, fftshift(magnitude)/fs, 'b');
+mag_S3k= plot(k3, fftshift(abs(S3k))/fs, 'b');
 title('Magnitude of Signal in Frenquency Domain')
 xlabel('Frequency')
 ylabel('Magnitude')
 % store the phase plot as 'phase_S3k'
 figure(2)
-phase_S3k= plot(t3, fftshift(phase)/fs, 'b');
+phase_S3k= plot(k3, fftshift(angle(S3k))/fs, 'b');
 title('Phase of Signal in Freqency Domain')
 xlabel('Frequency')
 ylabel('Phase')
